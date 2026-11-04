@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spec — 求职作品集</title>
+<style>
+:root{--bg:#160C05;--fg:#F6E9DC;--amber:#FF9A3C;--dim:rgba(246,233,220,.55);--line:rgba(246,233,220,.16)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);height:100vh;overflow:hidden;position:relative;
+  font-family:"Noto Sans SC","Source Han Sans SC",sans-serif}
+.warm{position:absolute;left:30%;top:-10%;width:1100px;height:1100px;
+  background:radial-gradient(circle at 50% 50%,rgba(255,150,60,.55),rgba(160,70,20,.22) 42%,transparent 68%);filter:blur(20px)}
+.grain{position:absolute;inset:0;opacity:.08;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.5) 0 1px,transparent 1px 3px)}
+
+.head{position:relative;z-index:5;display:flex;justify-content:space-between;padding:20px clamp(18px,3.2vw,40px);
+  font-family:"Mono";font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.head b{color:var(--fg);font-weight:400}
+.head .r{display:flex;gap:24px}
+
+h1{position:relative;z-index:5;margin:2vh 0 0 clamp(18px,3.2vw,40px);font-family:"Archivo";font-weight:900;
+  text-transform:uppercase;font-size:clamp(44px,6.2vw,96px);line-height:.86;letter-spacing:-.03em;
+  transform:scaleX(.92);transform-origin:left top}
+h1 b{display:block;font-weight:900}
+h1 u{display:block;text-decoration:none;color:transparent;-webkit-text-stroke:1.6px rgba(246,233,220,.8)}
+.role{position:relative;z-index:5;margin:16px 0 0 clamp(18px,3.2vw,40px);font-size:13px;color:rgba(246,233,220,.8)}
+.role i{font-style:normal;color:var(--amber)}
+
+.pitch{position:relative;z-index:5;margin:14px 0 0 clamp(18px,3.2vw,40px);font-size:11.5px;line-height:1.95;
+  color:var(--dim);max-width:300px}
+.dots{position:relative;z-index:5;margin:18px 0 0 clamp(18px,3.2vw,40px);display:flex;gap:8px}
+.dots span{width:26px;height:26px;border:1px solid rgba(246,233,220,.28);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-family:"Mono";font-size:8px;color:var(--dim)}
+
+.spec{position:absolute;right:clamp(18px,3.2vw,40px);top:28%;z-index:6;width:300px}
+.orb{position:absolute;left:44%;top:50%;transform:translate(-50%,-50%);width:min(40vw,520px);aspect-ratio:1;border-radius:50%;z-index:2;
+  background:radial-gradient(circle at 66% 30%,#FFD5A8,#FF9A3C 30%,#B4500F 62%,#3A1606 88%);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 58%,transparent 59%);
+  box-shadow:0 40px 100px rgba(255,140,50,.28)}
+.orb::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-linear-gradient(112deg,rgba(255,255,255,.14) 0 2px,transparent 2px 8px)}
+.orb b{position:absolute;left:4%;top:30%;width:92%;height:30%;border-radius:100px;z-index:2;
+  background:linear-gradient(180deg,rgba(255,240,225,.28),rgba(60,20,4,.62));
+  border:1px solid rgba(255,235,215,.35);backdrop-filter:blur(2px);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.orb i{position:absolute;left:6%;top:34%;width:52%;height:11%;border-radius:100px;transform:rotate(-18deg);
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));filter:blur(5px)}
+.spec h4{font-family:"Mono";font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.spec div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--line);
+  font-family:"Mono";font-size:9.5px;color:rgba(246,233,220,.78)}
+.spec div b{color:var(--amber);font-weight:400;text-align:right}
+
+.card{position:absolute;left:clamp(18px,3.2vw,40px);bottom:clamp(16px,3vw,36px);z-index:5;
+  display:flex;gap:12px;align-items:center;background:rgba(30,18,10,.62);border:1px solid rgba(246,233,220,.14);
+  border-radius:14px;padding:10px 14px 10px 10px;max-width:360px;backdrop-filter:blur(6px)}
+.thumb{width:62px;height:62px;border-radius:9px;flex:none;
+  background:linear-gradient(140deg,#FF9A3C,#7A2E00 55%,#1B0E06)}
+.card h3{font-size:12px;font-weight:700;letter-spacing:.01em}
+.card p{font-family:"Mono";font-size:8px;letter-spacing:.1em;color:var(--dim);margin-top:4px;text-transform:uppercase}
+.card a{display:inline-block;margin-top:7px;font-family:"Mono";font-size:8.5px;letter-spacing:.16em;
+  color:var(--amber);text-transform:uppercase;text-decoration:none}
+
+.chips{position:absolute;right:clamp(18px,3.2vw,40px);bottom:clamp(16px,3vw,36px);z-index:5;
+  display:flex;gap:8px;font-family:"Mono";font-size:8.5px;letter-spacing:.12em;text-transform:uppercase}
+.chips span{padding:6px 11px;border:1px solid rgba(246,233,220,.22);border-radius:100px;color:rgba(246,233,220,.8)}
+.chips span.on{background:var(--fg);color:#160C05;border-color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="warm"></div><div class="orb"><b></b><i></i></div><div class="grain"></div>
+
+<div class="head">
+  <span>LC-01 <b>// 求职作品集</b></span>
+  <div class="r"><span>3 / 01</span><span><b>下一个项目 →</b></span></div>
+</div>
+
+<h1><b>Product</b><u>Designer</u></h1>
+<div class="role">面向 <i>2026 届招聘</i> · 上海 · 一周内到岗</div>
+<div class="pitch">五年做界面与小程序的独立设计师。不只会画稿——能写前端、能搭设计系统、能把一个模糊需求推到上线。</div>
+<div class="dots"><span>微</span><span>端</span><span>信</span></div>
+
+<div class="spec">
+  <h4>Technical specs</h4>
+  <div><span>岗位</span><b>产品设计 / 界面</b></div>
+  <div><span>经验</span><b>5 年 · 独立交付 5 个项目</b></div>
+  <div><span>技术</span><b>HTML/CSS · 小程序 · 云开发</b></div>
+  <div><span>状态</span><b>随时可面</b></div>
+</div>
+
+<div class="card">
+  <div class="thumb"></div>
+  <div>
+    <h3>人格盲盒 V3.6</h3>
+    <p>小程序 · 付费链路 · 已上线</p>
+    <a href="#">查看项目 ↗</a>
+  </div>
+</div>
+
+<div class="chips"><span class="on">UI / UX</span><span>小程序</span><span>信息设计</span></div>
+</body>
+</html>

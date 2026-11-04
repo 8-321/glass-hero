@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JOBFOLIO 中文版 · 按 motionsites.org/zh 的架构复刻</title>
+<style>
+/* ============ 架构：两层 token ============
+   ① 语义层（照抄原站的 --ms-* 命名）：canvas / surface / surface-subtle / fill / ink / muted / line / accent
+   ② 组件层：卡片圆角 12（rounded-xl），控件圆角 6（--radius-control）
+   布局：65px 定高头 + 24px 外边距 + 5 列 1fr + 10px 列间距 + 16px 顶部间距
+   瀑布流：grid-auto-rows:8px + 每卡按图片比例算 span（原站实测 span 37–39、24 张卡）
+   以下每条都对应 specs/motionsites-zh.json 的实测值 */
+:root{
+  --ms-canvas:#F6F7F9; --ms-surface:#FFFFFF; --ms-surface-subtle:#ECEEF1;
+  --ms-surface-hover:#F0F1F3; --ms-fill:#E9EAED;
+  --ms-ink:#15171A; --ms-muted:#60646C; --ms-line:#DEDFE3;
+  --ms-accent:#C7FF3D; --ms-danger:#B42318;
+  --ms-leading-body:1.55; --ms-shadow-sm:0 1px 2px #15171A0F;
+  --radius-control:6px; --radius-card:12px; --radius-pill:999px;
+  --pad:24px; --unit:8px; --col-gap:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ms-canvas);color:var(--ms-ink);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:var(--ms-leading-body)}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%}
+
+/* ---------- header 65px ---------- */
+header{height:65px;background:var(--ms-surface);border-bottom:1px solid var(--ms-line);position:sticky;top:0;z-index:20}
+.bar{display:flex;align-items:center;gap:16px;height:64px;padding:0 var(--pad);max-width:1600px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;margin-right:16px}
+.logo .m{width:28px;height:28px;border-radius:7px;background:var(--ms-ink);position:relative}
+.logo .m::after{content:"";position:absolute;inset:7px;border-radius:50%;
+  background:conic-gradient(from 140deg,var(--ms-accent) 0 42%,transparent 42% 100%)}
+.logo b{font-family:"Archivo";font-weight:900;font-size:28px;letter-spacing:-.03em}
+nav.main{display:flex;align-items:center;gap:4px}
+nav.main a{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 13px;border-radius:9px;font-size:15px;font-weight:500}
+nav.main a:hover{background:var(--ms-surface-hover)}
+.tag-new{font-family:"Mono";font-size:9px;font-weight:700;letter-spacing:.04em;background:var(--ms-accent);color:#0E1A05;border-radius:4px;padding:2px 5px}
+.spacer{flex:1}
+.side{display:flex;align-items:center;gap:8px}
+.side a{font-size:15px;font-weight:500;padding:0 12px;height:38px;display:inline-flex;align-items:center;border-radius:9px}
+.side a.ghost{color:var(--ms-muted)}
+.side a.pill{background:var(--ms-accent);color:#0E1A05;font-weight:600;border-radius:var(--radius-pill);padding:0 18px;height:40px}
+
+/* ---------- filter row ---------- */
+.tools{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad) 0;max-width:1600px;margin:0 auto}
+.pills{display:flex;gap:4px;background:var(--ms-surface-subtle);border-radius:var(--radius-pill);padding:4px}
+.pills a{font-size:14px;font-weight:500;color:var(--ms-muted);padding:7px 22px;border-radius:var(--radius-pill)}
+.pills a.on{background:var(--ms-ink);color:#fff}
+.select{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--ms-muted)}
+.select .box{border:1px solid var(--ms-line);background:var(--ms-surface);border-radius:16px;padding:9px 14px;font-size:14px;color:var(--ms-ink);display:flex;align-items:center;gap:18px}
+
+/* ============ 瀑布流：8px 行单位 + 每卡 span ============
+   卡片高 = 媒体高(列宽 ÷ --ms-card-ratio) + 页脚高；span = ceil(高 ÷ 8) */
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  grid-auto-rows:var(--unit);column-gap:var(--col-gap);row-gap:0;
+  padding:16px var(--pad) 40px;max-width:1600px;margin:0 auto}
+.card{grid-row-end:span 40;align-self:start;background:var(--ms-surface);border-radius:var(--radius-card);
+  overflow:hidden;box-shadow:var(--ms-shadow-sm);position:relative;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(21,23,26,.10)}
+.media{display:block;position:relative;aspect-ratio:var(--ms-card-ratio,1.36);background:var(--ms-fill);overflow:hidden}
+.media img{height:100%;width:100%;object-fit:cover;object-position:50% 12%}
+.badge{position:absolute;left:8px;top:8px;font-family:"Mono";font-size:9px;font-weight:700;letter-spacing:.04em;
+  background:var(--ms-accent);color:#0E1A05;border-radius:5px;padding:4px 7px;line-height:1;z-index:2}
+.badge.dark{background:rgba(21,23,26,.84);color:#fff}
+.body{padding:6px 10px 12px}
+.row1{display:flex;align-items:flex-start;gap:8px}
+h3{font-size:15px;font-weight:700;line-height:1.32;padding-top:2px;flex:1;min-height:calc(2*1.32em);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.acts{display:flex;gap:6px;padding-top:4px}
+.acts span{width:22px;height:22px;border-radius:6px;background:var(--ms-surface-subtle);color:var(--ms-muted);
+  display:flex;align-items:center;justify-content:center;font-size:9px;font-family:"Mono";font-weight:700}
+.cat{font-size:12px;color:var(--ms-muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 占位媒体（不搬别人的图） */
+.ph{position:absolute;inset:0}
+.ph1{background:radial-gradient(circle at 28% 26%,#3E5A16,#22340A 60%,#0F1A05)}
+.ph2{background:linear-gradient(150deg,#15171A,#2C3038 45%,#0C0E11)}
+.ph3{background:repeating-linear-gradient(115deg,#ECEEF1 0 12px,#E1E4E8 12px 24px)}
+.ph4{background:radial-gradient(circle at 70% 30%,#FFD9B0,#C4642A 50%,#2A1105)}
+.ph5{background:conic-gradient(from 200deg,#0A1B3C,#2E6BD6,#9FC4FF,#0A1B3C)}
+.ph8{background:radial-gradient(circle at 50% 120%,#FF5A1F,#150A04 60%)}
+
+/* ---------- 右下角客服位 → 求职状态 ---------- */
+.hire{position:fixed;right:var(--pad);bottom:24px;z-index:30;display:flex;align-items:center;gap:10px;
+  background:var(--ms-surface);border:1px solid var(--ms-line);border-radius:var(--radius-pill);
+  padding:7px 7px 7px 16px;box-shadow:0 12px 30px rgba(21,23,26,.14)}
+.hire i{font-style:normal;font-family:"Mono";font-size:9px;font-weight:700;color:#176A49;letter-spacing:.06em;display:block}
+.hire span{font-size:14px;font-weight:700}
+.hire .dot{width:58px;height:58px;border-radius:50%;background:var(--ms-ink);color:var(--ms-accent);
+  display:flex;align-items:center;justify-content:center;font-family:"Archivo";font-weight:900;font-size:13px}
+
+@media(max-width:1560px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}nav.main,.side a.ghost{display:none}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px;column-gap:8px}
+  .bar{padding:0 12px}.logo b{font-size:22px}.tools{padding:10px 12px 0}.pills a{padding:7px 14px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="logo" href="ms-cn.html"><span class="m"></span><b>JOBFOLIO</b></a>
+    <nav class="main">
+      <a href="#">项目</a><a href="#">简历</a><a href="#">方法</a>
+      <a href="motion.html">影像 <span class="tag-new">NEW</span></a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="side">
+      <a class="ghost" href="../README.md">更新日志</a>
+      <a class="ghost" href="#">简体中文</a>
+      <a href="mailto:hi@linche.studio">联系我</a>
+      <a class="pill" href="#">一周内到岗</a>
+    </div>
+  </div>
+</header>
+
+<div class="tools">
+  <div class="pills"><a class="on" href="#">精选</a><a href="#">全部作品</a><a href="#">小程序</a><a href="#">视觉</a></div>
+  <div class="select"><span>类型</span><span class="box">全部岗位 (11) <span>⌄</span></span></div>
+</div>
+
+<div class="grid" id="grid">
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="paradigm.html" style="--ms-card-ratio:1.36"><div class="ph ph1"></div><span class="badge">二创</span></a>
+    <div class="body"><div class="row1"><h3>按范式重排的首页 · 12 列栅格</h3><div class="acts"><span>HTML</span><span>↗</span></div></div><div class="cat">版式实验 · 求职门面</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="provenance.html" style="--ms-card-ratio:1.36"><img src="../shots/provenance.png" alt=""><span class="badge">二创</span></a>
+    <div class="body"><div class="row1"><h3>从计算后样式复刻的暗场版</h3><div class="acts"><span>HTML</span><span>↗</span></div></div><div class="cat">溯源 · 240px 巨名</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="spec.html" style="--ms-card-ratio:1.36"><div class="ph ph4"></div><span class="badge dark">产品</span></a>
+    <div class="body"><div class="row1"><h3>Atlas 化学 · 把散资料变成能查的东西</h3><div class="acts"><span>PDF</span><span>↗</span></div></div><div class="cat">文档体系 · 排版</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="cosmic.html" style="--ms-card-ratio:1.36"><div class="ph ph5"></div><span class="badge">生成</span></a>
+    <div class="body"><div class="row1"><h3>生成式影像 · 90 秒一条片子</h3><div class="acts"><span>视频</span><span>↗</span></div></div><div class="cat">分镜 · 合成</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="editorial.html" style="--ms-card-ratio:1.36"><img src="../shots/editorial.png" alt=""><span class="badge dark">信息设计</span></a>
+    <div class="body"><div class="row1"><h3>一页纸信息图 · 面试官三分钟读完</h3><div class="acts"><span>PDF</span><span>↗</span></div></div><div class="cat">A4 · 可直接投递</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="bold.html" style="--ms-card-ratio:1.36"><img src="../shots/bold.png" alt=""><span class="badge">品牌</span></a>
+    <div class="body"><div class="row1"><h3>整版强色 · 两行巨型字</h3><div class="acts"><span>HTML</span><span>↗</span></div></div><div class="cat">视觉 · 记忆点</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="dark.html" style="--ms-card-ratio:1.36"><img src="../shots/dark.png" alt=""><span class="badge dark">暗场</span></a>
+    <div class="body"><div class="row1"><h3>暗场 · 光带与衬线巨名</h3><div class="acts"><span>HTML</span><span>↗</span></div></div><div class="cat">产品 · 交互</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="motion.html" style="--ms-card-ratio:1.36"><img src="../shots/tpl-motion.png" alt=""><span class="badge">动效</span></a>
+    <div class="body"><div class="row1"><h3>动态版 · 跑马灯与橙色光晕</h3><div class="acts"><span>HTML</span><span>↗</span></div></div><div class="cat">动效 · 节奏</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="list.html" style="--ms-card-ratio:1.36"><img src="../shots/tpl-list.png" alt=""><span class="badge dark">结构</span></a>
+    <div class="body"><div class="row1"><h3>表格索引版 · 项目多时用这套</h3><div class="acts"><span>HTML</span><span>↗</span></div></div><div class="cat">索引 · 可扫读</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="paradigm.html" style="--ms-card-ratio:1.36"><div class="ph ph2"></div><span class="badge">合集</span></a>
+    <div class="body"><div class="row1"><h3>十一套开场页 · 随便挑一套用</h3><div class="acts"><span>HTML</span><span>↗</span></div></div><div class="cat">模板 · 全部本地可开</div></div>
+  </article>
+
+  <article class="card" data-ratio="1.36">
+    <a class="media" href="provenance.html" style="--ms-card-ratio:1.36"><div class="ph ph3"></div><span class="badge dark">在招</span></a>
+    <div class="body"><div class="row1"><h3>求职状态 · 2026 秋招可即时到岗</h3><div class="acts"><span>状态</span><span>↗</span></div></div><div class="cat">上海 · 可远程</div></div>
+  </article>
+
+</div>
+
+<div class="hire">
+  <div><i>现在可面</i><span>在找工作</span></div>
+  <div class="dot">LC</div>
+</div>
+
+<script>
+/* 架构核心：span 由「媒体比例 → 卡片实高」算出（原站在构建期就写死 inline style）。
+   这里客户端算一次，8px 行单位不变，任意宽度都不会出现半行错位。 */
+const UNIT = 8;
+function pack(){
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.gridRowEnd = 'span ' + Math.ceil((c.getBoundingClientRect().height + 2) / UNIT);
+  });
+}
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(pack); else pack();
+window.addEventListener('load', pack);
+let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => {
+  document.querySelectorAll('.card').forEach(c => c.style.gridRowEnd = 'auto');
+  requestAnimationFrame(pack);
+}, 120); });
+</script>
+</body>
+</html>

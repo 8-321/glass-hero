@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bold — 求职作品集</title>
+<style>
+:root{--bg:#FF4A0A;--fg:#FFF6EF;--ink:#2A0D03;--dim:rgba(255,246,239,.72)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);height:100vh;overflow:hidden;position:relative;
+  font-family:"Noto Sans SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
+.glow{position:absolute;left:50%;top:14%;width:900px;height:900px;transform:translateX(-38%);
+  background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.28),rgba(255,255,255,.06) 45%,transparent 68%);filter:blur(10px)}
+.arc{position:absolute;left:50%;bottom:-46%;width:1100px;height:1100px;transform:translateX(-42%);
+  border-radius:50%;background:radial-gradient(circle at 50% 30%,#E23A00,#C73000 60%,#B32A00);opacity:.55}
+
+header{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;
+  padding:22px clamp(18px,3.4vw,44px)}
+.mono{font-family:"Mono";font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.nav{display:flex;gap:26px}
+.hire{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,246,239,.5);
+  border-radius:100px;padding:6px 12px 6px 14px;color:var(--fg);text-decoration:none;font-family:"Mono";font-size:9.5px;letter-spacing:.16em}
+
+h1{position:relative;z-index:5;font-family:"Archivo";font-weight:900;text-transform:uppercase;
+  font-size:clamp(64px,14.6vw,232px);line-height:.78;letter-spacing:-.045em;
+  padding:0 clamp(18px,3.4vw,44px);transform:scaleX(.9);transform-origin:left center;margin-top:1vh}
+h1 .l2{display:block;color:transparent;-webkit-text-stroke:2.5px rgba(255,246,239,.85);margin-left:8%}
+
+.side{position:absolute;right:clamp(18px,3.4vw,44px);top:44%;z-index:5;text-align:right;max-width:260px}
+.side b{display:block;font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:6px}
+.side span{font-family:"Mono";font-size:9px;letter-spacing:.14em;line-height:1.9;color:var(--dim);text-transform:uppercase}
+
+.bio{position:absolute;left:clamp(18px,3.4vw,44px);top:62%;z-index:5;max-width:330px}
+.bio p{font-family:"Mono";font-size:10px;line-height:2;letter-spacing:.06em;color:var(--dim);text-transform:uppercase}
+.bio p b{color:var(--fg);font-weight:400}
+
+.strip{position:absolute;left:0;right:0;bottom:0;z-index:5;display:grid;grid-template-columns:repeat(5,1fr);
+  border-top:1px solid rgba(255,246,239,.28);padding:16px clamp(18px,3.4vw,44px) 20px;
+  font-size:12px;letter-spacing:.14em;color:rgba(255,246,239,.9)}
+.strip span:nth-child(2){text-align:center}
+.strip span:nth-child(3){text-align:center}
+.strip span:nth-child(4){text-align:center}
+.strip span:last-child{text-align:right}
+
+@media(max-width:760px){
+  .side,.bio{position:static;max-width:none;padding:0 18px;margin-top:18px;text-align:left}
+  .strip{grid-template-columns:1fr 1fr;gap:10px}
+  h1{font-size:clamp(52px,17vw,90px);margin-top:2vh}
+}
+</style>
+</head>
+<body>
+<div class="glow"></div><div class="arc"></div>
+
+<header>
+  <span class="mono">林澈 · Portfolio 2026</span>
+  <div class="nav">
+    <span class="mono">项目</span><span class="mono">经历</span><span class="mono">关于</span><span class="mono">简历 PDF</span>
+  </div>
+  <a class="hire" href="mailto:hi@linche.studio">// 在找工作 →</a>
+</header>
+
+<h1>Open for<span class="l2">Work</span></h1>
+
+<div class="side">
+  <b>产品设计 · 界面系统</b>
+  <span>Shanghai<br>入职时间 一周内<br>可远程 / 可到岗</span>
+</div>
+
+<div class="bio">
+  <p>我是<b>林澈</b> — 独立设计师与前端。<br>
+  五年里做过<b>小程序</b>、<b>双端产品</b>、<b>信息设计</b> 与生成式影像。<br>
+  习惯先想清楚，再动手。</p>
+</div>
+
+<div class="strip">
+  <span>微信小程序</span><span>双端设计系统</span><span>信息设计</span><span>生成式影像</span><span>本地工具</span>
+</div>
+</body>
+</html>

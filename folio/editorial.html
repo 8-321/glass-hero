@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Editorial — 求职作品集</title>
+<style>
+:root{--ink:#0D0D0D;--paper:#FAF8F3;--dim:#6B6862;--line:rgba(13,13,13,.16);--sig:#FF5A1F}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);height:100vh;overflow:hidden;position:relative;
+  font-family:"Noto Sans SC","Source Han Sans SC",sans-serif}
+header{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;
+  padding:20px clamp(18px,3.2vw,42px);border-bottom:1px solid var(--line)}
+.brand{font-family:"Noto Serif SC",serif;font-size:19px;font-weight:700;letter-spacing:.01em}
+.nav{display:flex;gap:24px;align-items:center}
+.nav a{color:var(--ink);text-decoration:none;font-size:12px}
+.nav .btn{background:var(--ink);color:var(--paper);padding:9px 16px;border-radius:2px;font-size:11.5px}
+
+.stage{position:relative;height:calc(100vh - 61px);display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  padding:0 clamp(18px,3.2vw,42px)}
+h1{font-family:"Archivo";font-weight:900;text-transform:uppercase;font-size:clamp(38px,5.2vw,78px);
+  line-height:.9;letter-spacing:-.035em;transform:scaleX(.94);transform-origin:left}
+h1 b{display:block}
+h1 i{display:block;font-style:normal;color:var(--sig)}
+.sub{margin-top:18px;font-size:14px;line-height:1.85;color:#2B2A26;max-width:26em}
+.sub s{text-decoration:none;box-shadow:inset 0 -.4em 0 rgba(255,90,31,.18)}
+.cta{margin-top:24px;display:flex;align-items:center;gap:14px}
+.cta .big{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--paper);
+  border-radius:100px;padding:6px 6px 6px 22px;font-size:13px;text-decoration:none}
+.cta .big span{width:34px;height:34px;border-radius:50%;background:var(--paper);color:var(--ink);
+  display:flex;align-items:center;justify-content:center}
+.cta .plain{font-size:12px;color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line)}
+
+.side{position:relative;display:flex;justify-content:center;align-items:center}
+.orb{width:min(34vw,430px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 62% 34%,#FFD9C2 0%,#FF9A5A 26%,#FF5A1F 52%,#B72E00 78%,#5E1500 100%);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 62%,transparent 63%);
+  box-shadow:0 40px 90px rgba(255,90,31,.22)}
+.orb::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.16) 0 2px,transparent 2px 7px)}
+.visor{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) rotate(-16deg);width:56%;height:12%;
+  border-radius:100px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.62),rgba(255,255,255,0));
+  filter:blur(6px)}
+
+.stat{position:absolute;right:-6px;width:190px}
+.stat.a{top:6%}.stat.b{bottom:6%}
+.stat b{display:block;font-family:"Archivo";font-weight:900;font-size:clamp(26px,2.8vw,40px);line-height:1;letter-spacing:-.03em}
+.stat p{font-size:11px;line-height:1.7;color:var(--dim);margin-top:8px}
+
+.strip{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;justify-content:space-between;
+  align-items:center;gap:18px;padding:12px clamp(18px,3.2vw,42px);border-top:1px solid var(--line);
+  font-size:11px;color:#3A3934}
+.strip span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.strip i{font-style:normal;color:var(--sig)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">林澈</div>
+  <div class="nav"><a href="#">作品</a><a href="#">经历</a><a href="#">关于</a><a href="#">简历</a>
+    <a class="btn" href="mailto:hi@linche.studio">联系我</a></div>
+</header>
+
+<div class="stage">
+  <div>
+    <h1><b>Built to</b><b>get</b><i>replies.</i></h1>
+    <p class="sub">作品集不是给同行看的，是给 <s>决定要不要面你的人</s> 看的。我把五个项目重排了一遍，只留能证明「我能独立交付」的部分。</p>
+    <div class="cta">
+      <a class="big" href="#">看作品 <span>→</span></a>
+      <a class="plain" href="mailto:hi@linche.studio">下载一页简历</a>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="orb"><div class="visor"></div></div>
+    <div class="stat a"><b>05</b><p>独立交付的项目<br>从想法到上线</p></div>
+    <div class="stat b"><b>5 年</b><p>产品设计 + 前端<br>一个人做完一条链</p></div>
+  </div>
+</div>
+
+<div class="strip">
+  <span><i>●</i> 微信小程序</span><span><i>▲</i> 双端系统</span><span><i>◆</i> 信息设计</span>
+  <span><i>■</i> 生成式影像</span><span><i>//</i> 本地工具</span><span><i>→</i> 一周内到岗</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>深夜版 · 求职作品集</title>
+<style>
+:root{--bg:#0A0A0B;--fg:#F4F2EA;--sig:#FF3B00;--dim:rgba(244,242,234,.5);--line:rgba(244,242,234,.18)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:"Noto Sans SC","Source Han Sans SC","Microsoft YaHei",sans-serif;height:100vh;overflow:hidden}
+.wrap{height:100vh;display:grid;grid-template-rows:auto 1fr auto;padding:26px clamp(20px,4vw,54px)}
+.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px}
+.mono{font-family:"Mono";font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+body .tag{color:var(--sig)}
+
+.mid{position:relative;display:flex;flex-direction:column;justify-content:center}
+h1{font-family:"Archivo";font-weight:900;font-size:clamp(96px,17vw,258px);line-height:.82;letter-spacing:-.055em;text-transform:uppercase}
+h1 .out{display:block;color:transparent;-webkit-text-stroke:2.5px var(--fg)}
+h1 .l2{display:flex;align-items:flex-end;gap:.05em}
+h1 .dot{color:var(--sig);font-size:.12em;line-height:1;padding-bottom:.1em}
+.cn{position:absolute;right:0;bottom:8%;text-align:right}
+.cn b{display:block;font-size:clamp(20px,2.4vw,36px);font-weight:800;letter-spacing:.02em}
+.cn span{display:block;font-family:"Mono";font-size:10px;letter-spacing:.16em;color:var(--dim);margin-top:8px;text-transform:uppercase}
+
+.bottom{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:22px;border-top:1px solid var(--line);padding-top:16px}
+.bottom div b{display:block;font-family:"Mono";font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;font-weight:400}
+.bottom div span{font-size:12.5px;line-height:1.7}
+.bottom .sel{color:var(--sig)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="mono">LIN CHE® — 求职作品集 2026</span>
+    <span class="mono">上海 · <span class="tag">正在求职</span> · 可远程</span>
+  </div>
+
+  <div class="mid">
+    <h1><span class="l1">Port</span><span class="l2"><span class="out">folio</span><span class="dot">■</span></span></h1>
+    <div class="cn">
+      <b>五个产品<br>一条主线</b>
+      <span>先想清楚，再动手</span>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div><b>岗位</b><span class="sel">产品设计 / 界面系统</span></div>
+    <div><b>做过</b><span>小程序 · 双端 · 信息设计</span></div>
+    <div><b>联系</b><span>hi@linche.studio</span></div>
+    <div><b>状态</b><span>随时可面 · 一周内到岗</span></div>
+  </div>
+</div>
+</body>
+</html>

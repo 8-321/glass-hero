@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Provenance — 从计算后样式复刻</title>
+<style>
+/* 这一页每个数值都来自 specs/dennis.DESIGN.md（getComputedStyle 实测 + 作者自有 token），没有一个是猜的 */
+:root{
+  --color-dark:#1C1D20; --color-dark-dark:#141517; --color-light:#FFFFFF;
+  --color-blue:#455CE9; --color-blue-dark:#334BD3; --color-gray:#999D9E;
+  --color-border:rgba(255,255,255,.2);
+  --display:clamp(88px,15vw,240px); --body:19px; --label:11.4px;
+  --sp:4px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--color-dark);color:var(--color-light);height:100vh;overflow:hidden;position:relative;
+  font-family:"Noto Sans SC","Source Han Sans SC",sans-serif;font-size:var(--body)}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"Mono";font-size:var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--color-gray)}
+
+.top{position:absolute;left:0;right:0;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;
+  padding:calc(var(--sp)*6) calc(var(--sp)*10);border-bottom:1px solid rgba(255,255,255,.12)}
+.top .nav{display:flex;gap:calc(var(--sp)*8)}
+.top .nav a{font-size:14px;color:rgba(255,255,255,.72)}
+.top .nav a:hover{color:#fff}
+
+/* 签名时刻：240px 的姓氏压在版面上，只出现一次 */
+.name{position:absolute;left:calc(var(--sp)*10);top:50%;transform:translateY(-52%);z-index:4;
+  font-family:"Archivo";font-weight:900;line-height:.82;letter-spacing:-.045em;font-size:var(--display);
+  text-transform:uppercase}
+.name em{display:block;font-style:normal;font-size:.42em;color:var(--color-blue);letter-spacing:-.03em}
+.name s{display:block;text-decoration:none;color:transparent;-webkit-text-stroke:1.2px rgba(255,255,255,.34);
+  font-size:.3em;letter-spacing:.02em;margin-top:.18em}
+
+.right{position:absolute;right:calc(var(--sp)*10);top:50%;transform:translateY(-58%);z-index:5;width:340px;text-align:left;
+  border-left:1px solid rgba(255,255,255,.14);padding-left:calc(var(--sp)*6)}
+.right h2{font-size:24px;font-weight:600;line-height:1.45;letter-spacing:-.01em}
+.right p{margin-top:calc(var(--sp)*4);font-size:15px;line-height:1.75;color:var(--color-gray)}
+.cta{display:inline-flex;align-items:center;gap:calc(var(--sp)*3);margin-top:calc(var(--sp)*7);
+  background:var(--color-blue);color:#fff;border-radius:40px;padding:calc(var(--sp)*4) calc(var(--sp)*7);
+  font-size:15px;transition:background .2s}
+.cta:hover{background:var(--color-blue-dark)}
+
+.spec{position:absolute;right:calc(var(--sp)*10);bottom:calc(var(--sp)*24);z-index:5;width:300px}
+.spec div{display:flex;justify-content:space-between;padding:calc(var(--sp)*3) 0;border-top:1px solid rgba(255,255,255,.14);
+  font-family:"Mono";font-size:var(--label);letter-spacing:.06em;color:rgba(255,255,255,.7);text-transform:uppercase}
+.spec div b{color:var(--color-blue);font-weight:400}
+
+.cards{position:absolute;left:calc(var(--sp)*10);bottom:calc(var(--sp)*24);z-index:5;display:flex;gap:calc(var(--sp)*4)}
+.card{width:150px;border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:calc(var(--sp)*3);
+  background:var(--color-dark-dark);transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--color-blue)}
+.card .dot{width:100%;aspect-ratio:1/.62;border-radius:12px;background:linear-gradient(150deg,#2A2D34,#17181B)}
+.card h3{font-size:13px;margin-top:calc(var(--sp)*2);font-weight:600}
+.card p{font-family:"Mono";font-size:9px;letter-spacing:.1em;color:var(--color-gray);margin-top:2px;text-transform:uppercase}
+
+.mark{position:absolute;left:50%;bottom:0;transform:translate(-50%,50%);width:520px;height:520px;border-radius:50%;
+  border:1px solid rgba(69,92,233,.4);z-index:2}
+.mark::after{content:"";position:absolute;inset:60px;border-radius:50%;border:1px solid rgba(69,92,233,.22)}
+</style>
+</head>
+<body>
+<div class="mark"></div>
+
+<div class="top">
+  <span class="mono">LIN CHE — 求职中</span>
+  <div class="nav"><a href="#">作品</a><a href="#">经历</a><a href="#">关于</a></div>
+  <span class="mono">Shanghai · 2026</span>
+</div>
+
+<div class="name">Lin<em>Che</em><s>Product Designer</s></div>
+
+<div class="right">
+  <h2>五年，五个产品，<br>都能上线。</h2>
+  <p>小程序、双端设计系统、信息设计、生成式影像。一个人从想法做到部署。</p>
+  <a class="cta" href="mailto:hi@linche.studio">约面试 →</a>
+</div>
+
+<div class="spec">
+  <div><span>Role</span><b>Product Design</b></div>
+  <div><span>Stack</span><b>HTML · 小程序 · 云开发</b></div>
+  <div><span>Notice</span><b>一周内到岗</b></div>
+  <div><span>Location</span><b>上海 / 可远程</b></div>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="dot"></div><h3>人格盲盒</h3><p>Mini program</p></div>
+  <div class="card"><div class="dot"></div><h3>奋马职前</h3><p>Dual platform</p></div>
+  <div class="card"><div class="dot"></div><h3>Atlas</h3><p>Information</p></div>
+</div>
+</body>
+</html>

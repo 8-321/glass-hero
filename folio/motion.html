@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Night Shift — portfolio</title>
+<style>
+:root{--bg:#08090A;--fg:#F2F0EA;--sig:#FF5A1F;--dim:rgba(242,240,234,.52);--line:rgba(242,240,234,.16)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);height:100vh;overflow:hidden;font-family:"Archivo",sans-serif;position:relative}
+.glow{position:absolute;left:50%;top:-28%;width:1200px;height:900px;transform:translateX(-50%);
+  background:radial-gradient(circle at 50% 50%,rgba(255,90,31,.42),rgba(255,90,31,.10) 42%,transparent 68%);filter:blur(30px)}
+.grain{position:absolute;inset:0;opacity:.055;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.6) 0 1px,transparent 1px 3px)}
+header{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;
+  padding:24px clamp(20px,4vw,52px);border-bottom:1px solid var(--line)}
+.mono{font-family:"Mono";font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.nav{display:flex;gap:22px}
+.nav a{color:var(--dim);text-decoration:none;font-family:"Mono";font-size:9.5px;letter-spacing:.18em;text-transform:uppercase}
+.nav a:hover{color:var(--fg)}
+
+.hero{position:relative;z-index:2;text-align:center;padding:clamp(24px,4.4vw,58px) 20px 0}
+.hero .pill{display:inline-block;font-family:"Mono";font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid var(--line);padding:5px 12px;color:var(--dim);margin-bottom:22px}
+h1{font-weight:900;font-size:clamp(38px,6.2vw,92px);line-height:.96;letter-spacing:-.045em;text-transform:uppercase}
+h1 span{display:block}
+h1 .dim{color:rgba(242,240,234,.42)}
+h1 .sig{color:var(--sig)}
+.hero p{color:var(--dim);font-size:13px;line-height:1.8;max-width:40em;margin:16px auto 0;font-family:"Noto Sans SC",sans-serif}
+
+.cta{margin-top:24px;display:flex;gap:10px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:"Mono";font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;padding:13px 20px;border:1px solid var(--line);color:var(--fg);text-decoration:none}
+.btn.solid{background:var(--fg);color:#08090A;border-color:var(--fg)}
+.btn.sig{background:var(--sig);border-color:var(--sig);color:#08090A}
+
+.marquee{margin-top:clamp(20px,3vw,34px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:9px 0;overflow:hidden;position:relative;z-index:2;transform:rotate(-1.1deg);width:104%;margin-left:-2%}
+.mq{display:flex;width:max-content;animation:m 28s linear infinite}
+.mq span{font-family:"Mono";font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+  white-space:nowrap;padding-right:38px}
+.mq i{font-style:normal;color:var(--sig)}
+@keyframes m{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.cases{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  padding:clamp(18px,2.6vw,30px) clamp(20px,4vw,52px) 0}
+.case{border:1px solid var(--line);padding:16px;background:rgba(255,255,255,.02)}
+.case .k{font-family:"Mono";font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--sig);margin-bottom:10px}
+.case h3{font-size:16px;font-weight:600;letter-spacing:-.01em;font-family:"Noto Sans SC",sans-serif}
+.case p{font-size:11.5px;line-height:1.8;color:var(--dim);margin-top:6px;font-family:"Noto Sans SC",sans-serif}
+footer{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:space-between;
+  padding:14px clamp(20px,4vw,52px);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="glow"></div><div class="grain"></div>
+
+<header>
+  <span class="mono">LIN CHE® — Portfolio</span>
+  <div class="nav"><span class="mono">Work</span><span class="mono">About</span><span class="mono">Contact</span></div>
+  <span class="mono">Shanghai · 2026</span>
+</header>
+
+<div class="hero">
+  <span class="pill">Open to work · product design</span>
+  <h1><span>Five products,</span><span class="dim">one habit —</span><span><span class="sig">think first.</span></span></h1>
+  <p>小程序、双端产品、信息设计、生成式影像。每个项目都从一句人话开始，最后落到能上线的东西上。</p>
+  <div class="cta">
+    <a class="btn sig" href="#">View work ↗</a>
+    <a class="btn" href="#">下载 PDF</a>
+  </div>
+</div>
+
+<div class="marquee">
+  <div class="mq">
+    <span>PERSONABOX <i>·</i> 微信小程序 <i>·</i> 2026</span><span>FENMA <i>·</i> 双端设计系统 <i>·</i> 2025</span><span>ATLAS <i>·</i> 信息设计 <i>·</i> 2025</span><span>NIGHT SHIFT <i>·</i> 生成式影像 <i>·</i> 2024</span>
+    <span>PERSONABOX <i>·</i> 微信小程序 <i>·</i> 2026</span><span>FENMA <i>·</i> 双端设计系统 <i>·</i> 2025</span><span>ATLAS <i>·</i> 信息设计 <i>·</i> 2025</span><span>NIGHT SHIFT <i>·</i> 生成式影像 <i>·</i> 2024</span>
+  </div>
+</div>
+
+<div class="cases">
+  <div class="case"><div class="k">Case 01 · Mini program</div><h3>人格盲盒</h3><p>测评 → 结果 → 付费解锁，全程不跳出小程序。</p></div>
+  <div class="case"><div class="k">Case 02 · Dual platform</div><h3>奋马职前</h3><p>一个云后端，两个前端，同一套动作语义。</p></div>
+  <div class="case"><div class="k">Case 03 · Information</div><h3>Atlas 化学</h3><p>把散落资料整理成能查、能印的文档。</p></div>
+</div>
+
+<footer><span class="mono">hi@linche.studio</span><span class="mono">Available for interview</span></footer>
+</body>
+</html>

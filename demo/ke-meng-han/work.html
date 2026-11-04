@@ -15,6 +15,7 @@ html{-webkit-font-smoothing:antialiased}
 body{background:var(--paper);color:var(--ink);font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-size:15px;line-height:1.75}
 a{color:inherit;text-decoration:none}
 b,strong{font-weight:600}
+.progress{position:fixed;left:0;top:0;height:2px;width:0;background:var(--accent);z-index:20;transition:width .08s linear}
 .wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
 .mono{font-family:ui-monospace,'JetBrains Mono',Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:.04em}
 
@@ -33,25 +34,26 @@ b,strong{font-weight:600}
 .facts dd{color:var(--ink)}
 
 .index{border-top:1px solid var(--ink)}
-.proj{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*7);padding:calc(var(--u)*6) 0;border-bottom:1px solid var(--line);align-items:center}
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*7);padding:calc(var(--u)*6) 0;border-bottom:1px solid var(--line);align-items:center;opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.proj.in{opacity:1;transform:none}
 .proj:nth-child(even) .visual{order:2}
 .proj .visual{position:relative;background:var(--cover);aspect-ratio:4/3;overflow:hidden;border-radius:2px}
-.proj .visual svg,.proj .visual img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.proj:hover .visual svg,.proj:hover .visual img{transform:scale(1.015)}
+.proj .visual svg,.proj .visual img{display:block;width:100%;height:100%;object-fit:cover;transform:translate3d(0,var(--py,0),0) scale(1.06);transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.proj:hover .visual svg,.proj:hover .visual img{transform:translate3d(0,var(--py,0),0) scale(1.08)}
 .proj .visual .tag{position:absolute;left:10px;bottom:8px;font-size:10px;letter-spacing:.12em;color:var(--mid);text-transform:uppercase}
-.head{display:flex;align-items:baseline;gap:calc(var(--u)*2);font-size:12px;color:var(--mid)}
+.head{display:flex;align-items:baseline;gap:calc(var(--u)*2);font-size:12.5px;color:var(--mid)}
 .head .num{font-weight:600;color:var(--accent)}
 .proj h2{font-family:'Songti SC','Noto Serif SC',SimSun,serif;font-size:clamp(26px,2.9vw,40px);line-height:1.22;font-weight:600;margin-top:calc(var(--u)*1.25);letter-spacing:.01em}
 .proj:hover h2{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
-.role{margin-top:calc(var(--u)*.75);font-size:13px;color:var(--mid)}
-.bg{margin-top:calc(var(--u)*2);max-width:46ch;color:#2C2A21;font-size:14px;line-height:1.9}
+.role{margin-top:calc(var(--u)*.75);font-size:13.5px;color:#575446}
+.bg{margin-top:calc(var(--u)*2);max-width:46ch;color:#211F18;font-size:14px;line-height:1.9}
 .metrics{display:flex;gap:calc(var(--u)*5);margin-top:calc(var(--u)*3);flex-wrap:wrap}
 .metrics div{display:flex;flex-direction:column-reverse;gap:2px}
 .metrics b{font-size:clamp(22px,2.3vw,31px);font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
 .metrics div:first-child b{color:var(--accent)}
-.metrics i{font-style:normal;font-size:11px;color:var(--mid);letter-spacing:.06em}
+.metrics i{font-style:normal;font-size:12px;color:#55524A;letter-spacing:.05em}
 .ev{display:flex;flex-wrap:wrap;gap:6px;margin-top:calc(var(--u)*2.5)}
-.ev span{font-size:11px;letter-spacing:.03em;color:#33312A;border:1px solid var(--line);padding:3px 8px;border-radius:1px;background:rgba(255,255,255,.35)}
+.ev span{font-size:11.5px;letter-spacing:.02em;color:#2B2922;border:1px solid var(--line);padding:3px 8px;border-radius:1px;background:rgba(255,255,255,.45)}
 .link{display:inline-block;margin-top:calc(var(--u)*2);font-size:12px;letter-spacing:.04em;border-bottom:1px solid var(--accent);color:var(--accent);padding-bottom:2px}
 
 footer{padding:calc(var(--u)*6) 0 calc(var(--u)*8);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
@@ -67,9 +69,15 @@ footer .fine{grid-column:1/-1;display:flex;justify-content:space-between;gap:16p
   footer{grid-template-columns:1fr}
   .top nav{display:none}
 }
+@media (prefers-reduced-motion: reduce){
+  .proj{opacity:1;transform:none;transition:none}
+  .proj .visual svg,.proj .visual img{transform:none}
+}
 </style>
+<noscript><style>.proj{opacity:1;transform:none}.proj .visual svg,.proj .visual img{transform:none}</style></noscript>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <div class="wrap">
   <div class="top">
     <div class="who">柯孟含<em>KE MENG HAN</em></div>
@@ -185,5 +193,47 @@ footer .fine{grid-column:1/-1;display:flex;justify-content:space-between;gap:16p
     </div>
   </footer>
 </div>
+<script>
+(function(){
+  var bar=document.getElementById('progress');
+  var projs=[].slice.call(document.querySelectorAll('.proj'));
+  var covers=[].slice.call(document.querySelectorAll('.proj .visual img,.proj .visual svg'));
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function progress(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+'%';
+  }
+  function parallax(){
+    var vh=window.innerHeight;
+    covers.forEach(function(el){
+      var r=el.parentElement.getBoundingClientRect();
+      if(r.bottom<-120||r.top>vh+120) return;
+      var p=(r.top+r.height/2-vh/2)/vh;
+      el.style.setProperty('--py',(-p*16).toFixed(1)+'px');
+    });
+  }
+  function onScroll(){
+    progress();parallax();
+  }
+
+  if(reduce){
+    projs.forEach(function(el){el.classList.add('in');});
+  }else if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    projs.forEach(function(el){io.observe(el);});
+  }else{
+    projs.forEach(function(el){el.classList.add('in');});
+  }
+
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  progress();parallax();
+})();
+</script>
 </body>
 </html>

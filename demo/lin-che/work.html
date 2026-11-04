@@ -3,99 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>林澈 — 作品</title>
+<title>林澈 — 作品索引</title>
 <style>
 :root{
-  --ink:#0B0B0C; --paper:#F3F1EA; --fg:#F3F1EA; --dim:#8A8A85;
-  --accent:#D6FF3F; --line:rgba(243,241,234,.14);
-  --u:8px; --pad:clamp(20px,4.2vw,64px);
+  --paper:#F2EEE4; --ink:#141309; --mid:#6E6A5C; --line:#CFC9B8;
+  --accent:#1F3BFF; --cover:#E7E2D3;
+  --u:8px; --pad:clamp(20px,4vw,56px);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased}
-body{background:var(--ink);color:var(--fg);font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:1.7}
+body{background:var(--paper);color:var(--ink);font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-size:15px;line-height:1.75}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1440px;margin:0 auto;padding:0 var(--pad)}
+b,strong{font-weight:600}
+.wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:ui-monospace,'JetBrains Mono',Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:.04em}
 
-header{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:calc(var(--u)*3) 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
-.mark{width:10px;height:10px;background:var(--accent);border-radius:50%}
-.brand span{font-weight:400;color:var(--dim);font-size:13px;letter-spacing:.08em}
-.meta{font-size:13px;color:var(--dim);letter-spacing:.02em}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:calc(var(--u)*2.5) 0;border-bottom:1px solid var(--ink)}
+.top .who{display:flex;align-items:baseline;gap:12px;font-weight:700;letter-spacing:-.01em}
+.top .who em{font-style:normal;font-weight:400;font-size:11px;color:var(--mid);letter-spacing:.14em;text-transform:uppercase}
+.top nav{display:flex;gap:calc(var(--u)*3);font-size:12px;color:var(--mid)}
 
-.lead{display:grid;grid-template-columns:1.15fr .85fr;gap:calc(var(--u)*6);align-items:end;padding:calc(var(--u)*7) 0 calc(var(--u)*6);border-bottom:1px solid var(--line)}
-.lead h1{font-size:clamp(40px,6.6vw,98px);line-height:1.06;font-weight:800;letter-spacing:-.015em}
-.lead h1 i{font-style:normal;color:var(--accent)}
-.lead .side{font-size:clamp(15px,1.25vw,19px);line-height:1.8;color:#C9C8C2;max-width:34ch}
-.lead .side b{color:var(--fg);font-weight:600}
+.intro{display:grid;grid-template-columns:1fr 300px;gap:calc(var(--u)*6);align-items:end;padding:calc(var(--u)*8) 0 calc(var(--u)*6)}
+.intro h1{font-family:'Songti SC','Noto Serif SC',SimSun,serif;font-size:clamp(42px,7.4vw,108px);line-height:1.16;font-weight:600;letter-spacing:.02em}
+.intro h1 span{display:block}
+.intro .note{font-size:14px;line-height:1.95;color:#3A382D;border-top:1px solid var(--ink);padding-top:calc(var(--u)*2)}
+.intro .note i{font-style:normal;color:var(--accent);font-weight:600}
+.facts{margin-top:calc(var(--u)*2);display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:12px;color:var(--mid)}
+.facts dt{letter-spacing:.06em}
+.facts dd{color:var(--ink)}
 
-.list{padding:calc(var(--u)*4) 0 0}
-.proj{display:grid;grid-template-columns:calc(var(--u)*8) 1fr;gap:calc(var(--u)*3);padding:calc(var(--u)*3.5) 0;border-bottom:1px solid var(--line)}
-.proj:first-child{padding-top:0}
-.idx{font-family:ui-monospace,'JetBrains Mono',monospace;font-size:13px;color:var(--dim);font-variant-numeric:tabular-nums;padding-top:6px}
-.proj h2{font-size:clamp(24px,2.6vw,40px);line-height:1.16;font-weight:700;letter-spacing:-.02em}
-.sub{font-size:13px;color:var(--dim);margin-top:calc(var(--u)*.75);letter-spacing:.02em}
-.bg{margin-top:calc(var(--u)*1.75);max-width:62ch;color:#C9C8C2;font-size:15px;line-height:1.85}
-.res{display:flex;flex-wrap:wrap;gap:calc(var(--u)*4);margin-top:calc(var(--u)*2.25)}
-.res div{display:flex;flex-direction:column;gap:2px}
-.res b{font-size:clamp(19px,1.9vw,26px);font-weight:700;color:var(--accent);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
-.res i{font-style:normal;font-size:12px;color:var(--dim);letter-spacing:.04em}
-.ev{display:flex;flex-wrap:wrap;gap:8px;margin-top:calc(var(--u)*2.25)}
-.ev span{font-size:12px;color:#B9B8B2;border:1px solid var(--line);border-radius:2px;padding:4px 9px;letter-spacing:.02em}
-.ev span::before{content:'';display:inline-block;width:5px;height:5px;background:var(--dim);border-radius:50%;margin-right:7px;vertical-align:1px}
-.proj .go{display:inline-block;margin-top:calc(var(--u)*2);font-size:13px;letter-spacing:.02em;border-bottom:1px solid var(--accent);padding-bottom:2px}
+.index{border-top:1px solid var(--ink)}
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*7);padding:calc(var(--u)*6) 0;border-bottom:1px solid var(--line);align-items:center}
+.proj:nth-child(even) .visual{order:2}
+.proj .visual{position:relative;background:var(--cover);aspect-ratio:4/3;overflow:hidden;border-radius:2px}
+.proj .visual svg,.proj .visual img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.proj:hover .visual svg,.proj:hover .visual img{transform:scale(1.015)}
+.proj .visual .tag{position:absolute;left:10px;bottom:8px;font-size:10px;letter-spacing:.12em;color:var(--mid);text-transform:uppercase}
+.head{display:flex;align-items:baseline;gap:calc(var(--u)*2);font-size:12px;color:var(--mid)}
+.head .num{font-weight:600;color:var(--accent)}
+.proj h2{font-family:'Songti SC','Noto Serif SC',SimSun,serif;font-size:clamp(26px,2.9vw,40px);line-height:1.22;font-weight:600;margin-top:calc(var(--u)*1.25);letter-spacing:.01em}
+.proj:hover h2{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.role{margin-top:calc(var(--u)*.75);font-size:13px;color:var(--mid)}
+.bg{margin-top:calc(var(--u)*2);max-width:46ch;color:#2C2A21;font-size:14px;line-height:1.9}
+.metrics{display:flex;gap:calc(var(--u)*5);margin-top:calc(var(--u)*3);flex-wrap:wrap}
+.metrics div{display:flex;flex-direction:column-reverse;gap:2px}
+.metrics b{font-size:clamp(22px,2.3vw,31px);font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.metrics div:first-child b{color:var(--accent)}
+.metrics i{font-style:normal;font-size:11px;color:var(--mid);letter-spacing:.06em}
+.ev{display:flex;flex-wrap:wrap;gap:6px;margin-top:calc(var(--u)*2.5)}
+.ev span{font-size:11px;letter-spacing:.03em;color:#33312A;border:1px solid var(--line);padding:3px 8px;border-radius:1px;background:rgba(255,255,255,.35)}
+.link{display:inline-block;margin-top:calc(var(--u)*2);font-size:12px;letter-spacing:.04em;border-bottom:1px solid var(--accent);color:var(--accent);padding-bottom:2px}
 
-footer{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:calc(var(--u)*5) 0 calc(var(--u)*5);margin-top:calc(var(--u)*4);border-top:1px solid var(--line);font-size:13px;color:var(--dim)}
-footer a{border-bottom:1px solid var(--line)}
+footer{padding:calc(var(--u)*6) 0 calc(var(--u)*8);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+footer .big{font-family:'Songti SC','Noto Serif SC',SimSun,serif;font-size:clamp(28px,3.4vw,44px);line-height:1.25;font-weight:600}
+footer .mail{font-size:14px;border-bottom:1px solid var(--ink);padding-bottom:2px}
+footer .fine{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--mid);letter-spacing:.04em;margin-top:calc(var(--u)*3);border-top:1px solid var(--line);padding-top:calc(var(--u)*2)}
 
-@media (max-width:860px){
-  .lead{grid-template-columns:1fr;gap:calc(var(--u)*3);padding:calc(var(--u)*4) 0}
-  .proj{grid-template-columns:calc(var(--u)*4.5) 1fr;gap:var(--u)}
-  .res{gap:calc(var(--u)*2.5)}
+@media (max-width:900px){
+  .intro{grid-template-columns:1fr;gap:calc(var(--u)*4);padding:calc(var(--u)*5) 0 calc(var(--u)*4)}
+  .proj{grid-template-columns:1fr;gap:calc(var(--u)*3);padding:calc(var(--u)*4) 0}
+  .proj:nth-child(even) .visual{order:0}
+  .metrics{gap:calc(var(--u)*3.5)}
+  footer{grid-template-columns:1fr}
+  .top nav{display:none}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div class="brand"><i class="mark"></i>林澈<span>LIN CHE</span></div>
-    <div class="meta">产品设计师 / 前端 · 上海 · 5 年</div>
-  </header>
+  <div class="top">
+    <div class="who">林澈<em>LIN CHE</em></div>
+    <nav><span class="mono">产品设计师 / 前端 · 上海 · 5 YRS</span></nav>
+  </div>
 
-  <section class="lead">
-    <h1>设计<br>要能<br><i>上线</i></h1>
-    <p class="side">产品设计师 / 前端，5 年，上海。<br>这里每个项目都带<b>结果数字</b>和<b>证据</b>，不是形容词堆出来的。</p>
+  <section class="intro">
+    <h1><span>设计要能上线</span></h1>
+    <div>
+      <div class="note">不写「负责某某项目」，只写改了什么数字，<br>每一条都附<i>能核的证据</i>。</div>
+      <dl class="facts">
+        <dt>方向</dt><dd>产品设计师 / 前端</dd>
+        <dt>年限</dt><dd>5 年 · 上海</dd>
+        <dt>联系</dt><dd>hi@linche.studio</dd>
+      </dl>
+    </div>
   </section>
 
-  <section class="list">
+  <section class="index">
     <article class="proj">
-      <div class="idx">01</div>
+      <div class="visual"><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="400" height="300" fill="#E7E2D3"/><line x1="0" y1="0" x2="0" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="40" y1="0" x2="40" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="80" y1="0" x2="80" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="120" y1="0" x2="120" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="160" y1="0" x2="160" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="200" y1="0" x2="200" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="240" y1="0" x2="240" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="280" y1="0" x2="280" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="320" y1="0" x2="320" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="360" y1="0" x2="360" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="400" y1="0" x2="400" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><rect x="52" y="190" width="34" height="58" fill="#141309" fill-opacity=".09"/><rect x="114" y="174" width="34" height="74" fill="#141309" fill-opacity=".09"/><rect x="176" y="152" width="34" height="96" fill="#141309" fill-opacity=".09"/><rect x="238" y="130" width="34" height="118" fill="#141309" fill-opacity=".09"/><rect x="300" y="100" width="34" height="148" fill="#141309" fill-opacity=".09"/><rect x="300" y="100" width="34" height="148" fill="#1F3BFF"/><polyline points="69,176 131,160 193,138 255,116 317,86" stroke="#141309" stroke-width="1" stroke-opacity=".75" stroke-dasharray="2 5"/><line x1="40" y1="248" x2="368" y2="248" stroke="#141309" stroke-width="1"/></svg><span class="tag">Next.js</span></div>
       <div>
+        <div class="head"><span class="num">01</span><span>2025 · Next.js · Postgres</span></div>
         <h2>把周报做成产品</h2>
-        <div class="sub">设计 + 前端 · 2025 · Next.js · Postgres</div>
+        <div class="role">设计 + 前端</div>
         <p class="bg">团队 30 人，周报散在飞书文档，管理者每周要花 2 小时汇总。</p>
-        <div class="res"><div><b>2h → 8min</b><i>汇总耗时</i></div><div><b>41% → 92%</b><i>填写率</i></div></div>
+        <div class="metrics"><div><b>2h → 8min</b><i>汇总耗时</i></div><div><b>41% → 92%</b><i>填写率</i></div></div>
         <div class="ev"><span>需求访谈记录 8 份</span><span>线上 Demo</span></div>
         
       </div>
     </article>
     <article class="proj">
-      <div class="idx">02</div>
+      <div class="visual"><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="400" height="300" fill="#E7E2D3"/><line x1="0" y1="0" x2="0" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="40" y1="0" x2="40" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="80" y1="0" x2="80" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="120" y1="0" x2="120" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="160" y1="0" x2="160" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="200" y1="0" x2="200" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="240" y1="0" x2="240" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="280" y1="0" x2="280" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="320" y1="0" x2="320" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="360" y1="0" x2="360" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="400" y1="0" x2="400" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><clipPath id="cube"><path d="M200,64 L272,106.0 L200,148 L128,106.0 Z M128,106.0 L200,148 L200,232 L128,190.0 Z M272,106.0 L200,148 L200,232 L272,190.0 Z"/></clipPath><path d="M200,64 L272,106.0 L200,148 L128,106.0 Z" fill="#1F3BFF" fill-opacity=".05"/><g clip-path="url(#cube)"><rect x="140" y="58" width="8" height="159.6" fill="#1F3BFF" fill-opacity="0.10"/><rect x="162" y="58" width="8" height="159.6" fill="#1F3BFF" fill-opacity="0.20"/><rect x="184" y="58" width="8" height="159.6" fill="#1F3BFF" fill-opacity="0.30"/><rect x="206" y="58" width="8" height="159.6" fill="#1F3BFF" fill-opacity="0.40"/><rect x="228" y="58" width="8" height="159.6" fill="#1F3BFF" fill-opacity="0.50"/></g><path d="M200,64 L272,106.0 L200,148 L128,106.0 Z" stroke="#141309" stroke-width="1.2"/><path d="M128,106.0 L200,148 L200,232 L128,190.0 Z" stroke="#141309" stroke-width="1.2"/><path d="M272,106.0 L200,148 L200,232 L272,190.0 Z" stroke="#141309" stroke-width="1.2"/></svg><span class="tag">Three.js</span></div>
       <div>
+        <div class="head"><span class="num">02</span><span>2025 · Three.js · GLSL</span></div>
         <h2>玻璃立方体作品集</h2>
-        <div class="sub">设计 + WebGL · 2025 · Three.js · GLSL</div>
+        <div class="role">设计 + WebGL</div>
         <p class="bg">求职者打开作品集 3 秒内决定是否继续看，静态 PDF 抓不住人。</p>
-        <div class="res"><div><b>11s → 47s</b><i>首屏停留</i></div><div><b>1.9MB / 0 外链</b><i>单文件</i></div></div>
+        <div class="metrics"><div><b>11s → 47s</b><i>首屏停留</i></div><div><b>1.9MB / 0 外链</b><i>单文件</i></div></div>
         <div class="ev"><span>线上地址</span><span>模板 + 生成器</span></div>
-        <a class="go" href="https://8-321.github.io/glass-hero/" target="_blank" rel="noopener">打开 →</a>
+        <a class="link" href="https://8-321.github.io/glass-hero/" target="_blank" rel="noopener">打开线上 →</a>
       </div>
     </article>
     <article class="proj">
-      <div class="idx">03</div>
+      <div class="visual"><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="400" height="300" fill="#E7E2D3"/><line x1="0" y1="0" x2="0" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="40" y1="0" x2="40" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="80" y1="0" x2="80" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="120" y1="0" x2="120" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="160" y1="0" x2="160" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="200" y1="0" x2="200" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="240" y1="0" x2="240" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="280" y1="0" x2="280" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="320" y1="0" x2="320" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="360" y1="0" x2="360" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="400" y1="0" x2="400" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><rect x="68" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="174" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="227" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="280" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="68" y="91" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="91" width="53" height="53" fill="#141309"/><rect x="174" y="91" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="227" y="91" width="53" height="53" fill="#1F3BFF"/><rect x="280" y="91" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="68" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="174" y="144" width="53" height="53" fill="#141309"/><rect x="227" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="280" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="68" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="174" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="227" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="280" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/></svg><span class="tag">DevTools</span></div>
       <div>
+        <div class="head"><span class="num">03</span><span>2025 · DevTools · Tailwind v4</span></div>
         <h2>中文站的架构复刻</h2>
-        <div class="sub">逆向 + 重构 · 2025 · DevTools · Tailwind v4</div>
+        <div class="role">逆向 + 重构</div>
         <p class="bg">想学别人怎么把界面做「高级」，肉眼估颜色永远差一点。</p>
-        <div class="res"><div><b>0.34%</b><i>强调色占比</i></div><div><b>≤2px</b><i>网格误差</i></div></div>
+        <div class="metrics"><div><b>0.34%</b><i>强调色占比</i></div><div><b>≤2px</b><i>网格误差</i></div></div>
         <div class="ev"><span>架构拆解 119 行</span></div>
         
       </div>
@@ -103,8 +128,13 @@ footer a{border-bottom:1px solid var(--line)}
   </section>
 
   <footer>
-    <span>林澈 · hi@linche.studio</span>
-    <span><a href="index.html">← 回到开头</a> · 3 个项目 · 证据可核</span>
+    <div class="big">有岗位要人，<br>或者要一个这样的作品集。</div>
+    <a class="mail" href="mailto:hi@linche.studio">hi@linche.studio</a>
+    <div class="fine">
+      <span>林澈 · LIN CHE</span>
+      <span class="mono">03 PROJECTS · EVIDENCE AVAILABLE</span>
+      <span><a href="index.html">← 回到开头</a></span>
+    </div>
   </footer>
 </div>
 </body>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>柯孟含 — 作品索引</title>
+<style>
+:root{
+  --paper:#F2EEE4; --ink:#141309; --mid:#6E6A5C; --line:#CFC9B8;
+  --accent:#1F3BFF; --cover:#E7E2D3;
+  --u:8px; --pad:clamp(20px,4vw,56px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--ink);font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-size:15px;line-height:1.75}
+a{color:inherit;text-decoration:none}
+b,strong{font-weight:600}
+.wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:ui-monospace,'JetBrains Mono',Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:calc(var(--u)*2.5) 0;border-bottom:1px solid var(--ink)}
+.top .who{display:flex;align-items:baseline;gap:12px;font-weight:700;letter-spacing:-.01em}
+.top .who em{font-style:normal;font-weight:400;font-size:11px;color:var(--mid);letter-spacing:.14em;text-transform:uppercase}
+.top nav{display:flex;gap:calc(var(--u)*3);font-size:12px;color:var(--mid)}
+
+.intro{display:grid;grid-template-columns:1fr 300px;gap:calc(var(--u)*6);align-items:end;padding:calc(var(--u)*8) 0 calc(var(--u)*6)}
+.intro h1{font-family:'Songti SC','Noto Serif SC',SimSun,serif;font-size:clamp(42px,7.4vw,108px);line-height:1.16;font-weight:600;letter-spacing:.02em}
+.intro h1 span{display:block}
+.intro .note{font-size:14px;line-height:1.95;color:#3A382D;border-top:1px solid var(--ink);padding-top:calc(var(--u)*2)}
+.intro .note i{font-style:normal;color:var(--accent);font-weight:600}
+.facts{margin-top:calc(var(--u)*2);display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:12px;color:var(--mid)}
+.facts dt{letter-spacing:.06em}
+.facts dd{color:var(--ink)}
+
+.index{border-top:1px solid var(--ink)}
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*7);padding:calc(var(--u)*6) 0;border-bottom:1px solid var(--line);align-items:center}
+.proj:nth-child(even) .visual{order:2}
+.proj .visual{position:relative;background:var(--cover);aspect-ratio:4/3;overflow:hidden;border-radius:2px}
+.proj .visual svg,.proj .visual img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.proj:hover .visual svg,.proj:hover .visual img{transform:scale(1.015)}
+.proj .visual .tag{position:absolute;left:10px;bottom:8px;font-size:10px;letter-spacing:.12em;color:var(--mid);text-transform:uppercase}
+.head{display:flex;align-items:baseline;gap:calc(var(--u)*2);font-size:12px;color:var(--mid)}
+.head .num{font-weight:600;color:var(--accent)}
+.proj h2{font-family:'Songti SC','Noto Serif SC',SimSun,serif;font-size:clamp(26px,2.9vw,40px);line-height:1.22;font-weight:600;margin-top:calc(var(--u)*1.25);letter-spacing:.01em}
+.proj:hover h2{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.role{margin-top:calc(var(--u)*.75);font-size:13px;color:var(--mid)}
+.bg{margin-top:calc(var(--u)*2);max-width:46ch;color:#2C2A21;font-size:14px;line-height:1.9}
+.metrics{display:flex;gap:calc(var(--u)*5);margin-top:calc(var(--u)*3);flex-wrap:wrap}
+.metrics div{display:flex;flex-direction:column-reverse;gap:2px}
+.metrics b{font-size:clamp(22px,2.3vw,31px);font-weight:600;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums}
+.metrics div:first-child b{color:var(--accent)}
+.metrics i{font-style:normal;font-size:11px;color:var(--mid);letter-spacing:.06em}
+.ev{display:flex;flex-wrap:wrap;gap:6px;margin-top:calc(var(--u)*2.5)}
+.ev span{font-size:11px;letter-spacing:.03em;color:#33312A;border:1px solid var(--line);padding:3px 8px;border-radius:1px;background:rgba(255,255,255,.35)}
+.link{display:inline-block;margin-top:calc(var(--u)*2);font-size:12px;letter-spacing:.04em;border-bottom:1px solid var(--accent);color:var(--accent);padding-bottom:2px}
+
+footer{padding:calc(var(--u)*6) 0 calc(var(--u)*8);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+footer .big{font-family:'Songti SC','Noto Serif SC',SimSun,serif;font-size:clamp(28px,3.4vw,44px);line-height:1.25;font-weight:600}
+footer .mail{font-size:14px;border-bottom:1px solid var(--ink);padding-bottom:2px}
+footer .fine{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--mid);letter-spacing:.04em;margin-top:calc(var(--u)*3);border-top:1px solid var(--line);padding-top:calc(var(--u)*2)}
+
+@media (max-width:900px){
+  .intro{grid-template-columns:1fr;gap:calc(var(--u)*4);padding:calc(var(--u)*5) 0 calc(var(--u)*4)}
+  .proj{grid-template-columns:1fr;gap:calc(var(--u)*3);padding:calc(var(--u)*4) 0}
+  .proj:nth-child(even) .visual{order:0}
+  .metrics{gap:calc(var(--u)*3.5)}
+  footer{grid-template-columns:1fr}
+  .top nav{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="who">柯孟含<em>KE MENG HAN</em></div>
+    <nav><span class="mono">AI 产品 · 项目负责人 · 长沙 · 2 YRS</span></nav>
+  </div>
+
+  <section class="intro">
+    <h1><span>敢接敢做敢上线</span></h1>
+    <div>
+      <div class="note">不写「负责某某项目」，只写改了什么数字，<br>每一条都附<i>能核的证据</i>。</div>
+      <dl class="facts">
+        <dt>方向</dt><dd>AI 产品 · 项目负责人</dd>
+        <dt>年限</dt><dd>2 年 · 长沙</dd>
+        <dt>联系</dt><dd>18030299993@163.com</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="index">
+    <article class="proj">
+      <div class="visual"><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="400" height="300" fill="#E7E2D3"/><line x1="0" y1="0" x2="0" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="40" y1="0" x2="40" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="80" y1="0" x2="80" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="120" y1="0" x2="120" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="160" y1="0" x2="160" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="200" y1="0" x2="200" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="240" y1="0" x2="240" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="280" y1="0" x2="280" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="320" y1="0" x2="320" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="360" y1="0" x2="360" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="400" y1="0" x2="400" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><rect x="52" y="190" width="34" height="58" fill="#141309" fill-opacity=".09"/><rect x="114" y="174" width="34" height="74" fill="#141309" fill-opacity=".09"/><rect x="176" y="152" width="34" height="96" fill="#141309" fill-opacity=".09"/><rect x="238" y="130" width="34" height="118" fill="#141309" fill-opacity=".09"/><rect x="300" y="100" width="34" height="148" fill="#141309" fill-opacity=".09"/><rect x="300" y="100" width="34" height="148" fill="#1F3BFF"/><polyline points="69,176 131,160 193,138 255,116 317,86" stroke="#141309" stroke-width="1" stroke-opacity=".75" stroke-dasharray="2 5"/><line x1="40" y1="248" x2="368" y2="248" stroke="#141309" stroke-width="1"/></svg><span class="tag">微信小程序</span></div>
+      <div>
+        <div class="head"><span class="num">01</span><span>2025 · 微信小程序 · 云函数 · 设备指令</span></div>
+        <h2>共享 3D 打印租赁平台</h2>
+        <div class="role">唯一项目负责人 · 产品定义 + 商务交付</div>
+        <p class="bg">企业直接给的需求：把在线定制、模型上传、排产、打印、取件、支付搬到线上，替掉原来的人工台账。</p>
+        <div class="metrics"><div><b>100 单 / 200+ 人</b><i>校内运行</i></div><div><b>通过 · 尾款结清</b><i>企业验收</i></div><div><b>三等奖（署名）</b><i>挑战杯</i></div></div>
+        <div class="ev"><span>订单状态机 6 主态 + 3 异常态</span><span>设备联调与验收记录</span><span>三层权限后台</span></div>
+        
+      </div>
+    </article>
+    <article class="proj">
+      <div class="visual"><img src="assets/02-fenma.jpg" alt="奋马职前 · 三端产品" loading="lazy"><span class="tag">微信小程序</span></div>
+      <div>
+        <div class="head"><span class="num">02</span><span>2026 · 微信小程序 · uni-app · 云开发</span></div>
+        <h2>奋马职前 · 三端产品</h2>
+        <div class="role">产品 / 全栈 / 合规上架</div>
+        <p class="bg">一个云后端同时喂微信原生、uni-app APP 和 H5；从测评、课程一路做到岗位交付，还要过四家应用商店。</p>
+        <div class="metrics"><div><b>3 端 · 1 套后端</b><i>端</i></div><div><b>28.67 MB · b119</b><i>Android 包</i></div><div><b>四店 0 缺失</b><i>上架材料</i></div></div>
+        <div class="ev"><span>三端同源工程</span><span>隐私合规与四店清单</span><span>APK / 鸿蒙 .app 验签</span></div>
+        
+      </div>
+    </article>
+    <article class="proj">
+      <div class="visual"><img src="assets/03-subculture.jpg" alt="第二文化 · 亚文化测评" loading="lazy"><span class="tag">微信小程序</span></div>
+      <div>
+        <div class="head"><span class="num">03</span><span>2025 – 至今 · 微信小程序 · 云开发 · 支付核验</span></div>
+        <h2>第二文化 · 亚文化测评</h2>
+        <div class="role">联合创始人 · 产品与增长</div>
+        <p class="bg">有创意 ≠ 有商业模式。从 MBTI / 亚文化内容切入，把「测一下」做成真的愿意被玩完的产品。</p>
+        <div class="metrics"><div><b>52 题 · 14 种</b><i>题库 / 人格</i></div><div><b>68 项 · 0 失败</b><i>自动质检</i></div><div><b>1.51 MB</b><i>体验版包体</i></div></div>
+        <div class="ev"><span>personaboxlab.com</span><span>29 屏 UI + 48 页对接文档</span><span>40000 次校准 ±2.51pp</span></div>
+        <a class="link" href="https://personaboxlab.com" target="_blank" rel="noopener">打开线上 →</a>
+      </div>
+    </article>
+    <article class="proj">
+      <div class="visual"><img src="assets/04-campus.jpg" alt="白捡 · 校园免费捡漏" loading="lazy"><span class="tag">微信小程序</span></div>
+      <div>
+        <div class="head"><span class="num">04</span><span>2026 · 微信小程序 · 云开发 · LBS</span></div>
+        <h2>白捡 · 校园免费捡漏</h2>
+        <div class="role">产品 / 开发 / 线上验收</div>
+        <p class="bg">校园里免费的东西不该被扔掉：3 公里内、带倒计时、库存真实，先到先得。</p>
+        <div class="metrics"><div><b>38 / 38 通过</b><i>端到端断言</i></div><div><b>0 error · 0 404</b><i>线上报错</i></div><div><b>0 横向滚动</b><i>390 宽</i></div></div>
+        <div class="ev"><span>GitHub Pages 线上站</span><span>哈希一致验收记录</span><span>qc.py 38 项自检</span></div>
+        <a class="link" href="https://8-321.github.io/campus-free/" target="_blank" rel="noopener">打开线上 →</a>
+      </div>
+    </article>
+    <article class="proj">
+      <div class="visual"><img src="assets/05-video.jpg" alt="内容线 · 视频与 AE" loading="lazy"><span class="tag">AE</span></div>
+      <div>
+        <div class="head"><span class="num">05</span><span>2026 · AE · ffmpeg · TTS</span></div>
+        <h2>内容线 · 视频与 AE</h2>
+        <div class="role">编导 / 视觉 / 动效复刻</div>
+        <p class="bg">把「只给标题，一键出片」跑成流水线：脚本、分镜、配音、字幕、混音全部参数化，系列视觉模板可复用。</p>
+        <div class="metrics"><div><b>18 部 · 5.0 GB</b><i>交付</i></div><div><b>5:58 · 1080p30</b><i>《堂吉诃德》</i></div><div><b>SSIM 0.9975</b><i>AE 复刻</i></div></div>
+        <div class="ev"><span>终版可直发</span><span>54 个交付文件</span><span>ffmpeg / ASS 管线</span></div>
+        
+      </div>
+    </article>
+    <article class="proj">
+      <div class="visual"><svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="400" height="300" fill="#E7E2D3"/><line x1="0" y1="0" x2="0" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="40" y1="0" x2="40" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="80" y1="0" x2="80" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="120" y1="0" x2="120" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="160" y1="0" x2="160" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="200" y1="0" x2="200" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="240" y1="0" x2="240" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="280" y1="0" x2="280" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="320" y1="0" x2="320" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="360" y1="0" x2="360" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><line x1="400" y1="0" x2="400" y2="300" stroke="#6E6A5C" stroke-opacity=".13"/><rect x="68" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="174" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="227" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="280" y="38" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="68" y="91" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="91" width="53" height="53" fill="#141309"/><rect x="174" y="91" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="227" y="91" width="53" height="53" fill="#1F3BFF"/><rect x="280" y="91" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="68" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="174" y="144" width="53" height="53" fill="#141309"/><rect x="227" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="280" y="144" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="68" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="121" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="174" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="227" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/><rect x="280" y="197" width="53" height="53" fill="none" stroke="#141309" stroke-width=".8" stroke-opacity=".45"/></svg><span class="tag">AI 生成</span></div>
+      <div>
+        <div class="head"><span class="num">06</span><span>2025 · AI 生成 · PPTX · 产品验证</span></div>
+        <h2>AnPPT · AI 可编辑 PPT</h2>
+        <div class="role">带队负责人 · 产品与验证</div>
+        <p class="bg">只切 PPT 一个场景：先保证一次生成的视觉质量与内容可编辑，砍掉低频模板和协作功能。</p>
+        <div class="metrics"><div><b>二等奖</b><i>ICAN 省赛</i></div><div><b>同资料横向对比</b><i>验证</i></div><div><b>按差距排序</b><i>迭代</i></div></div>
+        <div class="ev"><span>省赛获奖记录</span><span>可编辑 PPTX</span><span>竞品对比表</span></div>
+        
+      </div>
+    </article>
+    <article class="proj">
+      <div class="visual"><img src="assets/07-sae.jpg" alt="科研线 · SAE 与 PLA 综述" loading="lazy"><span class="tag">Python</span></div>
+      <div>
+        <div class="head"><span class="num">07</span><span>2026 · Python · LaTeX · 文献管线</span></div>
+        <h2>科研线 · SAE 与 PLA 综述</h2>
+        <div class="role">科研执行 · 文献 / 实验 / 图表</div>
+        <p class="bg">把「找文献、读、做实验、写」做成可复用管线；图表只用论文原表数据，不做平滑和估算。</p>
+        <div class="metrics"><div><b>24 篇</b><i>SAE 文献</i></div><div><b>428 文件 · 85 MB</b><i>PLA 综述</i></div><div><b>数据可回溯</b><i>图表</i></div></div>
+        <div class="ev"><span>related_work.bib</span><span>文献管线脚本</span><span>图 A / Intro / 骨架</span></div>
+        
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <div class="big">有岗位要人，<br>或者要一个这样的作品集。</div>
+    <a class="mail" href="mailto:18030299993@163.com">18030299993@163.com</a>
+    <div class="fine">
+      <span>柯孟含 · KE MENG HAN</span>
+      <span class="mono">07 PROJECTS · EVIDENCE AVAILABLE</span>
+      <span><a href="index.html">← 回到开头</a></span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
